@@ -35,6 +35,12 @@ make clean
 
 make all
 
-time ./mandelbrot
+valgrind --tool=cachegrind ./ex2 1
+
+valgrind --tool=cachegrind ./ex2 2
+
+perf stat -e instructions,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores ./ex2 1
+
+perf stat -e instructions,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores ./ex2 2
 
 #export FOO=bar
