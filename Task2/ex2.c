@@ -46,13 +46,9 @@ int main(int argc, char* argv[]) {
 	}
 
 	if(atoi(argv[1]) == 1) {
-		/**
-		 * valgrind --tool=cachegrind ./ex2 1
-		 * valgrind --tool=cachegrind ./ex2 2
-		 * perf stat -e instructions,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores ./ex2 1
-		 * perf stat -e instructions,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores ./ex2 2
-		 *
-		 */
+		hadamard_v1(a, b, c);
+	} else {
+		hadamard_v2(a, b, c);
 	}
 
 	for(size_t i = 0; i < n; i++) {
