@@ -1,0 +1,77 @@
+  Loading gcc/8.2.0
+rm -f ex2
+gcc -std=gnu11 -Wall -Wextra    ex2.c   -o ex2
+==27776== Cachegrind, a cache and branch-prediction profiler
+==27776== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==27776== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==27776== Command: ./ex2 1
+==27776==
+==27776== brk segment overflow in thread #1: can't grow to 0x4a43000
+==27776== (see section Limitations in user manual)
+==27776== NOTE: further instances of this message will not be shown
+==27776==
+==27776== I   refs:      175,395,387
+==27776== I1  misses:            869
+==27776== LLi misses:            864
+==27776== I1  miss rate:        0.00%
+==27776== LLi miss rate:        0.00%
+==27776==
+==27776== D   refs:       73,555,348  (56,356,632 rd   + 17,198,716 wr)
+==27776== D1  misses:        323,043  (   132,020 rd   +    191,023 wr)
+==27776== LLd misses:        319,776  (   129,120 rd   +    190,656 wr)
+==27776== D1  miss rate:         0.4% (       0.2%     +        1.1%  )
+==27776== LLd miss rate:         0.4% (       0.2%     +        1.1%  )
+==27776==
+==27776== LL refs:           323,912  (   132,889 rd   +    191,023 wr)
+==27776== LL misses:         320,640  (   129,984 rd   +    190,656 wr)
+==27776== LL miss rate:          0.1% (       0.1%     +        1.1%  )
+==27779== Cachegrind, a cache and branch-prediction profiler
+==27779== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==27779== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==27779== Command: ./ex2 2
+==27779==
+==27779== brk segment overflow in thread #1: can't grow to 0x4a43000
+==27779== (see section Limitations in user manual)
+==27779== NOTE: further instances of this message will not be shown
+==27779==
+==27779== I   refs:      175,395,386
+==27779== I1  misses:            870
+==27779== LLi misses:            865
+==27779== I1  miss rate:        0.00%
+==27779== LLi miss rate:        0.00%
+==27779==
+==27779== D   refs:       73,555,348  (56,356,632 rd   + 17,198,716 wr)
+==27779== D1  misses:      3,510,415  ( 2,382,640 rd   +  1,127,775 wr)
+==27779== LLd misses:        288,557  (    98,488 rd   +    190,069 wr)
+==27779== D1  miss rate:         4.8% (       4.2%     +        6.6%  )
+==27779== LLd miss rate:         0.4% (       0.2%     +        1.1%  )
+==27779==
+==27779== LL refs:         3,511,285  ( 2,383,510 rd   +  1,127,775 wr)
+==27779== LL misses:         289,422  (    99,353 rd   +    190,069 wr)
+==27779== LL miss rate:          0.1% (       0.0%     +        1.1%  )
+
+ Performance counter stats for './ex2 1':
+
+       178,955,325      instructions:u                                                (74.66%)
+        59,736,084      L1-dcache-loads:u                                             (74.68%)
+            68,755      L1-dcache-load-misses:u   #    0.12% of all L1-dcache hits    (75.63%)
+        23,739,841      L1-dcache-stores:u                                            (49.69%)
+
+       0.052253699 seconds time elapsed
+
+       0.035119000 seconds user
+       0.017058000 seconds sys
+
+
+
+ Performance counter stats for './ex2 2':
+
+       176,033,985      instructions:u                                                (75.21%)
+        63,332,019      L1-dcache-loads:u                                             (75.18%)
+         2,613,531      L1-dcache-load-misses:u   #    4.13% of all L1-dcache hits    (75.21%)
+        23,370,925      L1-dcache-stores:u                                            (49.61%)
+
+       0.069520022 seconds time elapsed
+
+       0.050370000 seconds user
+       0.019140000 seconds sys
