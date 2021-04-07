@@ -69,11 +69,11 @@ int main(int argc, char **argv) {
     status = EXIT_SUCCESS;
 
 	// fill matrix
-	srand(7);
+	unsigned int seed = 165165;
 	for (long i = 0; i < n; ++i) {
 		for (long j = 0; j < n; ++j) {
-			a[i][j] = rand();
-			b[i][j] = rand();
+			a[i][j] = rand_r(&seed);
+			b[i][j] = rand_r(&seed);
 			c[i][j] = 0;
 		}
 	}
