@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 #pragma omp parallel default(none) shared(n, a, b, c, local_res)
 	{
 		// matrix multiplication
-#pragma omp parallel for default(none) shared(n, a, b, c)
+#pragma omp for
 		for (long i = 0; i < n; ++i) {
 			for (long j = 0; j < n; ++j) {
 				for (long k = 0; k < n; ++k) {
