@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
     status = EXIT_SUCCESS;
 
 	// fill matrix
-	unsigned int seed = 165165;
+	unsigned int seed = omp_get_thread_num();
 	for (long i = 0; i < n; ++i) {
 		for (long j = 0; j < n; ++j) {
 			a[i][j] = rand_r(&seed); //optimization: use rand_r instead of rand
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 #pragma omp parallel default(none) shared(n, a, b, c, local_res)
 	{
 		// matrix multiplication
-#pragma omp for //optimization: parallelize
+#pragma omp for //optimization: just use pragma omp for
 		for (long i = 0; i < n; ++i) {
 			for (long j = 0; j < n; ++j) {
 				for (long k = 0; k < n; ++k) {
@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
 		}
 
 		// sum of matrix c
-#pragma omp  for  //optimization: parallelize
+#pragma omp  for  //optimization: just use pragma omp for
 		for (long i = 0; i < n; ++i) {
 			for (long j = 0; j < n; ++j) {
 				local_res[omp_get_thread_num()] += c[i][j];
