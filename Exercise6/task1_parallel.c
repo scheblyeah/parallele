@@ -57,8 +57,6 @@ void prefixSum(int32_t* a, int32_t* b, int n) {
         }
 
         int thread = omp_get_thread_num();
-        printf("Thread number of me is: %d\n", thread);
-
         int lastValue = 0;
         #pragma omp for
         for (int i = 0; i < n; i++) 
@@ -69,10 +67,6 @@ void prefixSum(int32_t* a, int32_t* b, int n) {
         sumAll[thread+1] = lastValue;
 
         #pragma omp barrier // Warte auf Threads
-        for(int i = 0; i < threads+1; i++){
-            printf("%d, ", sumAll[i]);
-        }
-        printf("\n");
 
         int off = 0;
         for(int i = 0; i < thread+1; i++) 
@@ -82,7 +76,6 @@ void prefixSum(int32_t* a, int32_t* b, int n) {
         for (int i = 0; i < n; i++) 
             b[i] += off;
     }
-    printf("With %d threads:\n", threads);
     free(sumAll);
 }
 

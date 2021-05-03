@@ -30,14 +30,16 @@ module load gcc/8.2.0
 make clean
 make
 
+n=9000000000
+
+echo "serial..."
+./serial $n
+echo "----------------------------"
+
 for i in 1 8
 do
 	export OMP_NUM_THREADS=$i
 	echo "Running with $i thread(s): "
-
-	echo "serial with $i thread(s)..."
-	./serial $n
-	echo "----------------------------"
 
 	echo "parallel with $i thread(s)..."
 	./parallel $n
